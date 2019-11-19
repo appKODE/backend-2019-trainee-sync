@@ -10,6 +10,7 @@ def main():  # type: ignore
     :rtype: object
     """
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pitter.settings')
+    os.environ.setdefault('GOOGLE_APPLICATION_CREDENTIALS', 'src.My Project-98e7b64ca5e7')
     try:
         from django.core.management import execute_from_command_line  # pylint: disable=import-outside-toplevel
     except ImportError as exc:
