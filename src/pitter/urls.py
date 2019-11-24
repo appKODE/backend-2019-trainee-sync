@@ -5,6 +5,7 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from api_client.views import views
 
+
 SchemaView = get_schema_view(
     openapi.Info(title="Pitter API", default_version='v1', description="Pitter REST API"),
     public=True,
@@ -18,7 +19,9 @@ API_V1_URLS = [
 urlpatterns = [  # pylint: disable=invalid-name
     path('api/pitter/v1/', include((API_V1_URLS, 'pitter'), namespace='v1')),
     path('api/pitter/swagger/', SchemaView.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('voice/', views.voice),
-    path('register/', views.register),
-    path('delete/', views.delete_account),
+    path('registration/', views.registration),
+    path('login/', views.login),
+    path('auth/', views.auth),
+    path('makepitt/', views.makepitt),
 ]
+
