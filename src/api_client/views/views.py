@@ -1,18 +1,39 @@
+import django
 from django.http import HttpResponse
-from pitter.integrations.speech_to_text import SpeechToText
-from pitter.account_actions.registration import registration
-from pitter.account_actions.delete import delete
+from django.views.decorators.csrf import csrf_exempt
+
+from pitter.acc_actions.reg_del import register, delete, save_pitt
+from pitter.acc_actions.login import Login
+from pitter.acc_actions.auth import TokenAuthentication
 
 
-def voice(request):
-    return HttpResponse(SpeechToText.speech_to_text())
+@csrf_exempt
+def registration(request):
+    if request.method == 'POST':
+        try:
+            register(request)
+            return HttpResponse('Registration is completed.')
+        except django.db.utils.IntegrityError:
+            return HttpResponse('User already exists.')
+    elif request.method == 'DELETE':
+        delete(request)
+        return HttpResponse('Account is deleted.')
 
 
-def register(request):
-    registration()
-    return HttpResponse('Registration is completed.')
+@csrf_exempt
+def login(request):
+    user_logged = Login()
+    return HttpResponse(user_logged.post(request))
 
 
-def delete_account(request):
-    delete()
-    return HttpResponse('Account is deleted.')
+@csrf_exempt
+def auth(request):
+    user_auth = TokenAuthentication()
+    return HttpResponse(user_auth.get(request))
+
+
+@csrf_exempt
+def makepitt(request):
+    save_pitt(request)
+    return HttpResponse('Pitt is added.')
+

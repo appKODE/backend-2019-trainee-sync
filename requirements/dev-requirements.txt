@@ -9,4 +9,4 @@ mypy
 pytest
 pytest-asyncio
 pytest-coverage
-google-cloud-speech
+pyjwt

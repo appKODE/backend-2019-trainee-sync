@@ -1,6 +1,7 @@
 from .ticket import Ticket
-from .base import User, Pitt, Follower
-
+from .user_model import User
+from .pitt_model import Pitt
+from .follower_model import Follower
 
 __all__ = [
     'Ticket',
