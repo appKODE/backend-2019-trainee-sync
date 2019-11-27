@@ -83,6 +83,10 @@ USE_L10N = True
 
 USE_TZ = True
 
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = '3adac155c921fea3423695a3acee1e58-e470a504-39684050'
+MAILGUN_SERVER_NAME = 'sandboxb3f7b13f20844cedaf8e5a0e05cdb824.mailgun.org'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
