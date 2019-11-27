@@ -22,6 +22,10 @@ urlpatterns = [  # pylint: disable=invalid-name
     path('registration/', views.registration),
     path('login/', views.login),
     path('auth/', views.auth),
-    path('makepitt/', views.makepitt),
+    path('makepitt', views.makepitt),
+    path('savepitt/', views.savepitt),
+    path('follow/', views.follow),
+    path('users/', views.getusers),
+    path('finduser/', views.finduser),
 ]
 
