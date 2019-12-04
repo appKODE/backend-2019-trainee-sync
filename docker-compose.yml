@@ -2,11 +2,24 @@ version: '3.7'
 services:
   pitter_sync:
     build: .
-    env_file:
-      - local.env
+    volumes:
+      - ./src/:/src/src/
+    command: bash -c "python src/manage.py migrate && python src/manage.py runserver localhost:8000"
+    ports:
+      - 8000:8000
     depends_on:
       - redis
       - postgresql
+      - pitter_async
+  pitter_async:
+    build: ../async
+    volumes:
+      - ../async/src/:/src/src/
+    env_file:
+      - ../async/local.env
+    command: bash -c "python src/main.py"
+    ports:
+      - 8118:8118
   redis:
     image: redis
     command: redis-server --appendonly yes
@@ -23,3 +36,4 @@ services:
 
 volumes:
   pitter_sync_postgresql:
+

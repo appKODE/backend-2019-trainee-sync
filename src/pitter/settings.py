@@ -1,5 +1,6 @@
 import os
 from typing import List
+import datetime
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'cru)q9q-!=#ip!)(i=rawgbjdfxiyrm+znk05iz=5p*w7r9(yh'
@@ -74,13 +75,17 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Moscow'
+TIME_ZONE = 'Europe/Kaliningrad'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
+
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = '3adac155c921fea3423695a3acee1e58-e470a504-39684050'
+MAILGUN_SERVER_NAME = 'sandboxb3f7b13f20844cedaf8e5a0e05cdb824.mailgun.org'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
@@ -96,6 +101,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ['rest_framework.permissions.AllowAny'],
     'EXCEPTION_HANDLER': 'pitter.middleware.custom_exception_handler',
 }
+
 
 # Swagger
 
